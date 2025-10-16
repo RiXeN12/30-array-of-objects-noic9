@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace LabWork
 {
@@ -10,10 +11,12 @@ namespace LabWork
 
     class Circle
     {
-        private double radius;
-        private double centerX;
-        private double centerY;
+        // Поля класу
+        private double radius;      // Радіус круга
+        private double centerX;     // X-координата центру
+        private double centerY;     // Y-координата центру
 
+        // Конструктор
         public Circle(double radius, double centerX, double centerY)
         {
             this.radius = radius;
@@ -21,6 +24,7 @@ namespace LabWork
             this.centerY = centerY;
         }
 
+        // Властивості
         public double Radius
         {
             get { return radius; }
@@ -39,16 +43,19 @@ namespace LabWork
             set { centerY = value; }
         }
 
+        // Метод для обчислення площі круга
         public double GetArea()
         {
             return Math.PI * radius * radius;
         }
 
+        // Метод для виведення інформації про круг
         public void DisplayInfo()
         {
             Console.WriteLine($"Круг: центр ({centerX:F2}, {centerY:F2}), радіус = {radius:F2}, площа = {GetArea():F2}");
         }
 
+        // Перевизначення методу ToString
         public override string ToString()
         {
             return $"Круг: центр ({centerX:F2}, {centerY:F2}), радіус = {radius:F2}, площа = {GetArea():F2}";
@@ -61,11 +68,14 @@ namespace LabWork
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
+            // Введення кількості кругів
             Console.Write("Введіть кількість кругів (n): ");
             int n = int.Parse(Console.ReadLine());
 
+            // Створення масиву кругів
             Circle[] circles = new Circle[n];
 
+            // Заповнення масиву
             for (int i = 0; i < n; i++)
             {
                 Console.WriteLine($"\nКруг №{i + 1}:");
@@ -82,6 +92,7 @@ namespace LabWork
                 circles[i] = new Circle(radius, x, y);
             }
 
+            // Виведення всіх кругів
             Console.WriteLine("\n=== Всі круги ===");
             for (int i = 0; i < circles.Length; i++)
             {
@@ -89,7 +100,7 @@ namespace LabWork
                 circles[i].DisplayInfo();
             }
 
-
+            // Пошук круга з найбільшою площею
             Circle maxCircle = circles[0];
             int maxIndex = 0;
 
@@ -101,6 +112,8 @@ namespace LabWork
                     maxIndex = i;
                 }
             }
+
+            // Виведення результату
             Console.WriteLine("\n=== Круг з найбільшою площею ===");
             Console.WriteLine($"Індекс: {maxIndex + 1}");
             maxCircle.DisplayInfo();
